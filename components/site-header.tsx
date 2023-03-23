@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import router from 'next/router'
 import { IRootState } from '@/store/reducers'
 import { IAuthUserAction } from '@/store/reducers/User/authUser'
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu'
