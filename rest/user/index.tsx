@@ -103,7 +103,7 @@ export const useGetTable = <T,>({
     })
     return data
   }
-
+  const { toast } = useToast()
   return useQuery<ITable<T>, AxiosError<IQueryResponseError>>(
     [key || url, params],
     () => getTable(params),
@@ -112,9 +112,12 @@ export const useGetTable = <T,>({
       onSuccess,
       onError: async (error) => {
         onError(error)
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -139,7 +142,7 @@ export const useGetGraph = <T,>({
     })
     return data
   }
-
+  const { toast } = useToast()
   return useQuery<T, AxiosError<IQueryResponseError>>(
     [key || url, params],
     () => getTable(params),
@@ -147,9 +150,12 @@ export const useGetGraph = <T,>({
       enabled,
       onSuccess,
       onError: (error) => {
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -175,6 +181,7 @@ export const useGetOne = <T,>({
   const user = useSelector<IRootState, IRootState['authUser']>(
     (x) => x.authUser
   )
+  const { toast } = useToast()
   const getOne = async (_id?: string) => {
     const { data } = await apiUser.get<T>(_id ? `${url}/${_id}` : `${url}`, {
       ...config,
@@ -194,9 +201,12 @@ export const useGetOne = <T,>({
       onSuccess,
       onError: (error) => {
         onError(error)
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -214,6 +224,7 @@ export const useGetOptions = <T,>({
   const user = useSelector<IRootState, IRootState['authUser']>(
     (x) => x.authUser
   )
+  const { toast } = useToast()
   const getTable = async () => {
     const { data } = await apiUser.get(noUrl ? url : url + '/get-options', {
       headers: {
@@ -228,10 +239,13 @@ export const useGetOptions = <T,>({
     () => getTable(),
     {
       onSuccess,
-      onError: async (error) => {
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+      onError: (error) => {
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -250,6 +264,7 @@ export const useDeleteOne = ({
   const user = useSelector<IRootState, IRootState['authUser']>(
     (x) => x.authUser
   )
+  const { toast } = useToast()
   const deleteOne = async (_id: string) => {
     const { data } = await apiUser.delete<IWriteSuccess>(
       noUrl ? url : url + '/' + _id,
@@ -272,9 +287,12 @@ export const useDeleteOne = ({
         queryClient.refetchQueries()
       },
       onError: (error) => {
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -332,9 +350,6 @@ export const useCreateOne = <T,>({
             error.response?.data.message || error.code || messages.unknownError,
           variant: 'destructive',
         })
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
       },
     }
   )
@@ -359,6 +374,7 @@ export const useEditOne = <T,>({
   const user = useSelector<IRootState, IRootState['authUser']>(
     (x) => x.authUser
   )
+  const { toast } = useToast()
   return useMutation<IQueryResponse, AxiosError<IQueryResponseError, T>, T>(
     async (values) => {
       const { data } = await apiUser.put<IWriteSuccess>(
@@ -379,12 +395,18 @@ export const useEditOne = <T,>({
           queryClient.invalidateQueries({ queryKey: [url] })
           queryClient.refetchQueries()
         }
-        snack && message.success(resp.message || messages.actionSuccess)
+        snack &&
+          toast({
+            description: resp.message || messages.actionSuccess,
+          })
       },
       onError: (error) => {
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
@@ -403,6 +425,7 @@ export const usePatchOne = <T,>({
   const user = useSelector<IRootState, IRootState['authUser']>(
     (x) => x.authUser
   )
+  const { toast } = useToast()
   return useMutation<IQueryResponse, AxiosError<IQueryResponseError, T>, T>(
     async (values) => {
       const { data } = await apiUser.patch<IWriteSuccess>(
@@ -420,12 +443,17 @@ export const usePatchOne = <T,>({
       onSuccess: (resp) => {
         onSuccess(resp)
         queryClient.invalidateQueries({ queryKey: [url] })
-        // message.success(resp.message || messages.actionSuccess)
+        toast({
+          description: resp.message || messages.actionSuccess,
+        })
       },
       onError: (error) => {
-        // message.error(
-        //   error.response?.data.message || error.code || messages.unknownError
-        // )
+        toast({
+          title: 'Error',
+          description:
+            error.response?.data.message || error.code || messages.unknownError,
+          variant: 'destructive',
+        })
       },
     }
   )
