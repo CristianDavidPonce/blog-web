@@ -3,6 +3,7 @@ import { Inter as FontSans } from '@next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import '@/styles/globals.css'
+import '@/styles/rc-pagination.css'
 import { persistor, store } from '@/store/store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'

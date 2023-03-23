@@ -47,10 +47,12 @@ export function SiteHeader() {
                         <User className='mr-2 h-4 w-4' />
                         Perfil
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Settings className='mr-2 h-4 w-4' />
-                        Administración
-                      </DropdownMenuItem>
+                      <Link href={'/admin/home'}>
+                        <DropdownMenuItem>
+                          <Settings className='mr-2 h-4 w-4' />
+                          Administración
+                        </DropdownMenuItem>
+                      </Link>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => {

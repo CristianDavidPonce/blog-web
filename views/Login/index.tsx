@@ -40,8 +40,9 @@ const Login = () => {
     <div className='flex h-screen items-center justify-center'>
       <div
         className={
-          'w-full max-w-lg self-center rounded-md border border-slate-100 bg-white p-4 shadow-md dark:border-slate-800 dark:bg-slate-800'
+          'self-center rounded-md border border-slate-100 bg-white p-4 shadow-md dark:border-slate-800 dark:bg-slate-800'
         }
+        style={{ width: '100%', maxWidth: '24rem' }}
       >
         <h1 className='mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700'>
           Iniciar Sesión
@@ -61,6 +62,7 @@ const Login = () => {
             <Input
               name='password'
               label='Contraseña'
+              inputProps={{ type: 'password' }}
               rules={{ required: { message: 'Requerido', value: true } }}
             />
             <Button
