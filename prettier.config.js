@@ -1,10 +1,9 @@
 /** @type {import('prettier').Config} */
 module.exports = {
-  endOfLine: "lf",
-  semi: false,
-  singleQuote: false,
-  tabWidth: 2,
-  trailingComma: "es5",
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": false,
+  "trailingComma": "es5",
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
