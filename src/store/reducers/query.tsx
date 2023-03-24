@@ -3,9 +3,9 @@ import { Reducer } from 'redux'
 
 export interface IQueries {
   params?: {
-    $limit?: number
-    $page?: number
-    $sort?: string
+    limit?: number
+    page?: number
+    order?: string
     $qFields?: string
     $qValues?: string
     $fields?: string
@@ -18,9 +18,8 @@ export interface IQueries {
 }
 const initialState: IQueries = {
   params: {
-    $limit: 100,
-    $page: 1,
-    $sort: '',
+    limit: 10,
+    page: 1,
   },
 }
 
@@ -40,7 +39,7 @@ export const query: Reducer<IQueries, IQueryAction> = (
         ...state,
         params: {
           ...state.params,
-          $page: 1,
+          page: 1,
         },
         filters: payload.filters,
       }
@@ -51,12 +50,12 @@ export const query: Reducer<IQueries, IQueryAction> = (
       ) {
         return {
           ...state,
-          params: { ...omit(state.params, ['$qFields', '$qValues']), $page: 1 },
+          params: { ...omit(state.params, ['$qFields', '$qValues']), page: 1 },
         }
       }
       return {
         ...state,
-        params: { ...state.params, ...payload.params, $page: 1 },
+        params: { ...state.params, ...payload.params, page: 1 },
       }
     case 'reset':
       return payload

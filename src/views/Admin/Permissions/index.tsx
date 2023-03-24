@@ -1,22 +1,13 @@
 import React from 'react'
 import { useGet, useGetOptions } from '@/rest/user'
 import { optionMatch } from '@/utils/optionMatch'
-import {
-  Delete,
-  Edit,
-  Eye,
-  FilterIcon,
-  LucideMoreHorizontal,
-} from 'lucide-react'
+import { Delete, Edit, Eye, LucideMoreHorizontal } from 'lucide-react'
 import moment from 'moment'
-import Pagination from 'rc-pagination'
-import Table from 'rc-table'
 
-import { IOption } from '@/types/types'
+import { Filter, Table } from '@/components/table'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
@@ -34,9 +25,12 @@ const Permissions = () => {
         <h2 className='mb-4 text-2xl font-semibold'>Permisos</h2>
         <Button>Crear</Button>
       </div>
-      <div className='flex h-[calc(100vh-160px)] flex-col justify-between'>
-        <Table
-          columns={[
+
+      <Table
+        data={data.data}
+        loading={data.isFetching}
+        tableProps={{
+          columns: [
             {
               title: 'Creacion',
               dataIndex: 'createdAt',
@@ -53,7 +47,13 @@ const Permissions = () => {
               ),
             },
             {
-              title: <Filter title='Modulo' options={options.data?.module} />,
+              title: (
+                <Filter
+                  title='Modulo'
+                  options={options.data?.module}
+                  filter='modules'
+                />
+              ),
               dataIndex: 'module',
               key: 'module',
               width: 200,
@@ -62,7 +62,13 @@ const Permissions = () => {
             },
 
             {
-              title: <Filter title='Acciones' options={options.data?.action} />,
+              title: (
+                <Filter
+                  title='Acciones'
+                  options={options.data?.action}
+                  filter='actions'
+                />
+              ),
               dataIndex: 'action',
               key: 'action',
               width: 200,
@@ -106,42 +112,11 @@ const Permissions = () => {
                 </DropdownMenu>
               ),
             },
-          ]}
-          data={data.data?.items}
-          className='my-table'
-          scroll={{ x: 500, y: 'calc(100vh - 230px)' }}
-        />
-        <Pagination
-          total={data.data?.meta.totalItems}
-          current={data.data?.meta.currentPage}
-          className={'flex justify-center'}
-        />
-      </div>
+          ],
+        }}
+      />
     </div>
   )
 }
 
 export default Permissions
-interface IFilter {
-  title: string
-  options?: IOption[]
-}
-const Filter = ({ title, options }: IFilter) => {
-  return (
-    <div className='flex justify-between'>
-      {title}
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <FilterIcon className='h-4 w-4' />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {options?.map((x) => (
-            <DropdownMenuCheckboxItem checked>
-              <div className='flex'>{x.label}</div>
-            </DropdownMenuCheckboxItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  )
-}

@@ -65,8 +65,8 @@ export interface IQueryResponse {
 }
 
 export interface IQueries {
-  $limit: number
-  $page?: number
+  limit: number
+  page?: number
   $sort?: string
   $qFields?: string
   $qValues?: string | null

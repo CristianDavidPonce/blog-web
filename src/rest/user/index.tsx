@@ -58,7 +58,7 @@ export const useGet = <T,>({
   useEffect(() => {
     const params = initialQuery
       ? { ...initialQuery }
-      : { params: { $limit: 100, $page: 1 } }
+      : { params: { limit: 10, page: 1 } }
 
     dispatch({
       type: 'reset',
@@ -72,6 +72,7 @@ export const useGet = <T,>({
     {
       enabled,
       onSuccess,
+      refetchOnWindowFocus: false,
       onError: async (error) => {
         toast({
           description:
@@ -110,6 +111,7 @@ export const useGetTable = <T,>({
     {
       enabled,
       onSuccess,
+      refetchOnWindowFocus: false,
       onError: async (error) => {
         onError(error)
         toast({
@@ -239,6 +241,7 @@ export const useGetOptions = <T,>({
     () => getTable(),
     {
       onSuccess,
+      refetchOnWindowFocus: false,
       onError: (error) => {
         toast({
           title: 'Error',
