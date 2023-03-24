@@ -1,5 +1,6 @@
-import { Reducer } from 'redux'
 import { omit } from 'lodash'
+import { Reducer } from 'redux'
+
 export interface IQueries {
   params?: {
     $limit?: number

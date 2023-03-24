@@ -53,12 +53,7 @@ const Permissions = () => {
               ),
             },
             {
-              title: (
-                <Filter
-                  title='Modulo'
-                  options={[{ label: 'hola', value: 'hola' }]}
-                />
-              ),
+              title: <Filter title='Modulo' options={options.data?.module} />,
               dataIndex: 'module',
               key: 'module',
               width: 200,
@@ -67,7 +62,7 @@ const Permissions = () => {
             },
 
             {
-              title: 'Accion',
+              title: <Filter title='Acciones' options={options.data?.action} />,
               dataIndex: 'action',
               key: 'action',
               width: 200,
@@ -129,7 +124,7 @@ const Permissions = () => {
 export default Permissions
 interface IFilter {
   title: string
-  options: IOption[]
+  options?: IOption[]
 }
 const Filter = ({ title, options }: IFilter) => {
   return (
@@ -140,7 +135,7 @@ const Filter = ({ title, options }: IFilter) => {
           <FilterIcon className='h-4 w-4' />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {options.map((x) => (
+          {options?.map((x) => (
             <DropdownMenuCheckboxItem checked>
               <div className='flex'>{x.label}</div>
             </DropdownMenuCheckboxItem>

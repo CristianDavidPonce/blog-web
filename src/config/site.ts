@@ -1,4 +1,4 @@
-import { NavItem } from "@/types/nav"
+import { NavItem } from '@/types/nav'
 
 interface SiteConfig {
   name: string
@@ -12,18 +12,17 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Blog",
-  description:
-    "blog",
+  name: 'Blog',
+  description: 'blog',
   mainNav: [
     {
-      title: "Inicio",
-      href: "/",
+      title: 'Inicio',
+      href: '/',
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    twitter: 'https://twitter.com/shadcn',
+    github: 'https://github.com/shadcn/ui',
+    docs: 'https://ui.shadcn.com',
   },
 }
