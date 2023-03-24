@@ -35,9 +35,13 @@ export interface IValidateToken extends IRecord, IPerson {
 }
 
 export interface ITable<T> {
-  page: number
-  total: number
-  data: T[]
+  meta: {
+    currentPage: number
+    totalItems: number
+    totalPages: number
+    itemsPerPage: number
+  }
+  items: T[]
 }
 
 export interface IOption {

@@ -9,6 +9,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import 'moment/locale/es'
+import moment from 'moment'
+
 import { Toaster } from '@/components/ui/toaster'
 
 const fontSans = FontSans({
@@ -17,6 +20,7 @@ const fontSans = FontSans({
   display: 'swap',
 })
 const queryClient = new QueryClient()
+moment.locale('es')
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>

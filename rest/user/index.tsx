@@ -226,7 +226,7 @@ export const useGetOptions = <T,>({
   )
   const { toast } = useToast()
   const getTable = async () => {
-    const { data } = await apiUser.get(noUrl ? url : url + '/get-options', {
+    const { data } = await apiUser.get(noUrl ? url : url + '/get/options', {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
@@ -235,7 +235,7 @@ export const useGetOptions = <T,>({
   }
 
   return useQuery<T, AxiosError<IQueryResponseError>>(
-    [url + '/get-options'],
+    [url + '/get/options'],
     () => getTable(),
     {
       onSuccess,

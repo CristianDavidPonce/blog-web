@@ -4,7 +4,7 @@
 
 
 .my-table {
-  @apply min-w-full divide-y divide-gray-200;
+  @apply min-w-full divide-y divide-gray-200 border border-slate-100 rounded-md dark:border-slate-800;
 }
 
 .my-table thead {
@@ -12,11 +12,11 @@
 }
 
 .my-table th {
-  @apply px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider;
+  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider;
 }
 
 .my-table td {
-  @apply px-6 py-4 whitespace-nowrap text-sm;
+  @apply px-4 py-2 whitespace-nowrap text-sm;
 }
 
 .my-table tbody {
