@@ -4,6 +4,8 @@ import { ThemeProvider } from 'next-themes'
 
 import '@/styles/globals.css'
 import '@/styles/rc-pagination.css'
+import '@/styles/rc-select.css'
+import '@/styles/rc-table.css'
 import { persistor, store } from '@/store/store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'

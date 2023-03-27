@@ -1,0 +1,181 @@
+.rc-select {
+  @apply inline-block text-xs w-full relative;
+}
+.rc-select-disabled,
+.rc-select-disabled input {
+  @apply cursor-not-allowed;
+}
+.rc-select-disabled .rc-select-selector {
+  @apply opacity-30;
+}
+.rc-select-show-arrow.rc-select-loading .rc-select-arrow-icon::after {
+  @apply box-border w-3 h-3 animate-[rcSelectLoadingIcon_0.5s_infinite] mt-1 rounded-[100%] border-y-transparent border-2 border-solid border-[#999];
+
+}
+.rc-select .rc-select-selection-placeholder {
+  @apply opacity-40 pointer-events-none;
+}
+.rc-select .rc-select-selection-search-input {
+  @apply appearance-none outline-none;
+}
+.rc-select .rc-select-selection-search-input::-webkit-search-cancel-button {
+  @apply hidden appearance-none;
+}
+.rc-select-single .rc-select-selector {
+  @apply flex relative;
+}
+.rc-select-single .rc-select-selector .rc-select-selection-search {
+  @apply w-full;
+}
+.rc-select-single .rc-select-selector .rc-select-selection-search-input {
+  @apply w-full;
+}
+.rc-select-single .rc-select-selector .rc-select-selection-item,
+.rc-select-single .rc-select-selector .rc-select-selection-placeholder {
+  @apply absolute pointer-events-none left-3 top-2;
+}
+.rc-select-single:not(.rc-select-customize-input) .rc-select-selector {
+  @apply flex h-10 w-full rounded-md border border-slate-300 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900;
+
+}
+.rc-select-single:not(.rc-select-customize-input)
+  .rc-select-selector
+  .rc-select-selection-search-input {
+  @apply w-full border-[none];
+
+}
+.rc-select-multiple .rc-select-selector {
+  @apply flex h-10 w-full rounded-md border border-slate-300 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-item {
+  @apply flex-none rounded-md mr-2 px-2 py-1 bg-slate-200;
+
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-item-disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-overflow {
+  @apply flex flex-wrap w-full;
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-overflow-item {
+  @apply flex-none max-w-full;
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-search {
+  @apply relative max-w-full;
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-search-input,
+.rc-select-multiple .rc-select-selector .rc-select-selection-search-mirror {
+  @apply p-px;
+
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-search-mirror {
+  @apply absolute z-[9999] whitespace-nowrap invisible left-0 top-0;
+
+}
+.rc-select-multiple .rc-select-selector .rc-select-selection-search-input {
+  @apply w-full border-[none] outline-none bg-slate-50;
+
+}
+.rc-select-allow-clear.rc-select-multiple .rc-select-selector {
+  @apply pr-5;
+}
+.rc-select-allow-clear .rc-select-clear {
+  @apply absolute right-5 top-0;
+}
+.rc-select-show-arrow.rc-select-multiple .rc-select-selector {
+  @apply pr-5;
+}
+.rc-select-show-arrow .rc-select-arrow {
+  @apply pointer-events-none absolute right-3 top-2;
+}
+.rc-select-show-arrow .rc-select-arrow-icon::after {
+  @apply content-[''] w-0 h-0 inline-block translate-y-[5px] border-t-[#999] border-[5px] border-solid border-transparent;
+}
+.rc-select-focused .rc-select-selector {
+  @apply outline-none ring-2 ring-slate-400 ring-offset-2;
+}
+.rc-select-dropdown {
+  @apply border min-h-[100px] absolute border-solid border-slate-300 z-[999] bg-slate-50 rounded-md;
+
+}
+.rc-select-dropdown-hidden {
+  @apply hidden;
+}
+.rc-select-item {
+  @apply text-base leading-normal px-4 py-1;
+}
+.rc-select-item-group {
+  @apply text-[#999] font-[bold] text-[80%];
+}
+.rc-select-item-option {
+  @apply relative;
+}
+.rc-select-item-option-grouped {
+  @apply pl-6;
+}
+.rc-select-item-option .rc-select-item-option-state {
+  @apply absolute pointer-events-none right-2 top-2;
+}
+.rc-select-item-option-active {
+  @apply bg-slate-200
+}
+.rc-select-item-option-disabled {
+  @apply text-[#999];
+}
+.rc-select-item-empty {
+  @apply text-center text-[#999];
+}
+.rc-select-selection__choice-zoom {
+
+}
+.rc-select-selection__choice-zoom-appear {
+  @apply opacity-0 scale-50;
+}
+.rc-select-selection__choice-zoom-appear.rc-select-selection__choice-zoom-appear-active {
+  @apply opacity-100 scale-100;
+}
+.rc-select-selection__choice-zoom-leave {
+  @apply opacity-100 scale-100;
+}
+.rc-select-selection__choice-zoom-leave.rc-select-selection__choice-zoom-leave-active {
+  @apply opacity-0 scale-50;
+}
+.rc-select-dropdown-slide-up-enter,
+.rc-select-dropdown-slide-up-appear {
+  @apply origin-[0_0] opacity-0;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+  animation-play-state: paused;
+}
+.rc-select-dropdown-slide-up-leave {
+  @apply origin-[0_0] opacity-100;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  animation-play-state: paused;
+}
+.rc-select-dropdown-slide-up-enter.rc-select-dropdown-slide-up-enter-active.rc-select-dropdown-placement-bottomLeft,
+.rc-select-dropdown-slide-up-appear.rc-select-dropdown-slide-up-appear-active.rc-select-dropdown-placement-bottomLeft,
+.rc-select-dropdown-slide-up-enter.rc-select-dropdown-slide-up-enter-active.rc-select-dropdown-placement-bottomRight,
+.rc-select-dropdown-slide-up-appear.rc-select-dropdown-slide-up-appear-active.rc-select-dropdown-placement-bottomRight {
+  animation-name: rcSelectDropdownSlideUpIn;
+  animation-play-state: running;
+}
+.rc-select-dropdown-slide-up-leave.rc-select-dropdown-slide-up-leave-active.rc-select-dropdown-placement-bottomLeft,
+.rc-select-dropdown-slide-up-leave.rc-select-dropdown-slide-up-leave-active.rc-select-dropdown-placement-bottomRight {
+  animation-name: rcSelectDropdownSlideUpOut;
+  animation-play-state: running;
+}
+.rc-select-dropdown-slide-up-enter.rc-select-dropdown-slide-up-enter-active.rc-select-dropdown-placement-topLeft,
+.rc-select-dropdown-slide-up-appear.rc-select-dropdown-slide-up-appear-active.rc-select-dropdown-placement-topLeft,
+.rc-select-dropdown-slide-up-enter.rc-select-dropdown-slide-up-enter-active.rc-select-dropdown-placement-topRight,
+.rc-select-dropdown-slide-up-appear.rc-select-dropdown-slide-up-appear-active.rc-select-dropdown-placement-topRight {
+  animation-name: rcSelectDropdownSlideDownIn;
+  animation-play-state: running;
+}
+.rc-select-dropdown-slide-up-leave.rc-select-dropdown-slide-up-leave-active.rc-select-dropdown-placement-topLeft,
+.rc-select-dropdown-slide-up-leave.rc-select-dropdown-slide-up-leave-active.rc-select-dropdown-placement-topRight {
+  animation-name: rcSelectDropdownSlideDownOut;
+  animation-play-state: running;
+}

@@ -26,11 +26,10 @@ const Table = <T extends object>(props: {
     })
   }
   return (
-    <div className='flex h-[calc(100vh-160px)] flex-col justify-between'>
+    <div className='flex h-[calc(100vh-150px)] flex-col justify-between'>
       <Tabla<T>
         data={props.data?.items}
-        className='my-table'
-        scroll={{ x: 500, y: 'calc(100vh - 230px)' }}
+        scroll={{ x: 1300, y: 'calc(100vh - 240px)' }}
         emptyText={props.loading ? <Skeleton /> : 'Sin Datos 🥲'}
         {...props.tableProps}
       />

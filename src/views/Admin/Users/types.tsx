@@ -1,7 +1,7 @@
 import { IOption, IRecord } from '@/types/types'
 
-export const url = 'permissions'
-export interface IPermission extends IRecord {
+export const url = 'users'
+export interface IUser extends IRecord {
   module: string
   action: string
 }

@@ -286,6 +286,10 @@ export const useDeleteOne = ({
       onSuccess: (data) => {
         onSuccess()
         // message.success(data.message || messages.actionSuccess)
+        toast({
+          description: data.message || messages.actionSuccess,
+          variant: 'default',
+        })
         queryClient.invalidateQueries({ queryKey: [url] })
         queryClient.refetchQueries()
       },
@@ -338,12 +342,9 @@ export const useCreateOne = <T,>({
           queryClient.invalidateQueries({ queryKey: [url] })
           queryClient.refetchQueries()
         }
-
-        // snack &&
-        //   message.success({
-        //     content: resp.message || messages.actionSuccess,
-        //     style: { zIndex: 1500 },
-        //   })
+        toast({
+          description: resp.message || messages.actionSuccess,
+        })
       },
       onError: (error) => {
         onError(error)
@@ -380,7 +381,7 @@ export const useEditOne = <T,>({
   const { toast } = useToast()
   return useMutation<IQueryResponse, AxiosError<IQueryResponseError, T>, T>(
     async (values) => {
-      const { data } = await apiUser.put<IWriteSuccess>(
+      const { data } = await apiUser.patch<IWriteSuccess>(
         noUrl ? url : `${url}/${_id}`,
         values,
         {

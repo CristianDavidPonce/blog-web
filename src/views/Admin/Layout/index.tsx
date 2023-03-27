@@ -44,12 +44,12 @@ export function Layout({ children }: LayoutProps) {
           />
           <Item
             label='Roles'
-            href='/admin/permissions'
+            href='/admin/roles'
             icon={<UserCog className='h-4 w-4' />}
           />
           <Item
             label='Usuarios'
-            href='/admin/permissions'
+            href='/admin/users'
             icon={<Users className='h-4 w-4' />}
           />
         </aside>

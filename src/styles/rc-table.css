@@ -1,0 +1,154 @@
+.rc-table {
+  @apply relative border border-slate-100 rounded-md dark:border-slate-800;
+}
+
+.rc-table-rtl {
+  direction: rtl;
+}
+.rc-table table {
+  @apply w-full border border-slate-100 rounded-md dark:border-slate-800;
+}
+.rc-table th {
+  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider;
+}
+.rc-table td {
+  @apply px-4 py-2 whitespace-nowrap text-sm;
+}
+
+.rc-table-cell-fix-left,
+.rc-table-cell-fix-right {
+  @apply z-[1];
+}
+.rc-table-cell-fix-right:last-child:not(.rc-table-cell-fix-sticky) {
+  @apply border-r-transparent;
+}
+.rc-table-rtl .rc-table-cell-fix-right:last-child {
+  @apply border border-slate-500;
+}
+.rc-table-rtl .rc-table-cell-fix-left:last-child {
+  @apply border-l-transparent;
+}
+.rc-table-rtl .rc-table-cell-fix-left-first {
+  @apply shadow-[1px_0_0_red];
+}
+.rc-table-cell-fix-left-first::after,
+.rc-table-cell-fix-left-last::after {
+  @apply absolute w-5 translate-x-full transition-shadow  content-[''] pointer-events-none -right-px top-0 -bottom-px;
+}
+.rc-table-cell-fix-left-all::after {
+  @apply hidden;
+}
+.rc-table-cell-fix-right-first,
+.rc-table-cell-fix-right-last {
+  @apply shadow-[-1px_0_0_red];
+}
+.rc-table-rtl .rc-table-cell-fix-right-first,
+.rc-table-rtl .rc-table-cell-fix-right-last {
+  @apply shadow-none;
+}
+.rc-table-cell-fix-right-first::after,
+.rc-table-cell-fix-right-last::after {
+  @apply absolute w-5 -translate-x-full transition-shadow  content-[''] pointer-events-none -left-px top-0 -bottom-px;
+}
+.rc-table-cell.rc-table-cell-ellipsis {
+  @apply overflow-hidden whitespace-nowrap text-ellipsis;
+}
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-left-first,
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-left-last,
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-right-first
+  .rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-right-last {
+  @apply overflow-visible;
+}
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-left-first
+  .rc-table-cell-content,
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-left-last
+  .rc-table-cell-content,
+.rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-right-first
+  .rc-table-cell.rc-table-cell-ellipsis.rc-table-cell-fix-right-last
+  .rc-table-cell-content {
+  @apply block overflow-hidden text-ellipsis;
+}
+.rc-table-cell.rc-table-cell-row-hover {
+  @apply bg-slate-100;
+}
+.rc-table-ping-left .rc-table-cell-fix-left-first::after,
+.rc-table-ping-left .rc-table-cell-fix-left-last::after {
+  @apply shadow-[inset_10px_0_8px_-8px_rgb(0,0,0,0.1)];
+}
+.rc-table-ping-right .rc-table-cell-fix-right-first::after,
+.rc-table-ping-right .rc-table-cell-fix-right-last::after {
+  @apply shadow-[inset_-10px_0_8px_-8px_rgb(0,0,0,0.1)];
+}
+.rc-table-expand-icon-col {
+  @apply w-[60px];
+}
+.rc-table-row-expand-icon-cell {
+  @apply text-center;
+}
+.rc-table thead th {
+  @apply text-center;
+}
+.rc-table thead .rc-table-cell-scrollbar::after {
+  @apply absolute w-px content-[''] -left-px inset-y-0;
+
+}
+.rc-table-rtl.rc-table thead .rc-table-cell-scrollbar::after {
+  @apply left-auto -right-px;
+}
+.rc-table-header {
+  @apply bg-slate-50 dark:bg-slate-800 ;
+}
+.rc-table-placeholder {
+  @apply text-center;
+}
+.rc-table  td {
+  @apply bg-white
+}
+.rc-table-body {
+  @apply bg-white divide-y divide-slate-500 dark:bg-slate-900 dark:divide-slate-800;
+}
+.rc-table-fixed-column .rc-table-body::after {
+  @apply absolute z-[1]  divide-slate-200 dark:bg-slate-900 dark:divide-slate-800 border-solid right-0 inset-y-0;
+}
+.rc-table-expanded-row .rc-table-cell {
+  @apply shadow-[inset_0_8px_8px_-8px_green];
+}
+.rc-table-expanded-row-fixed {
+  @apply box-border -mr-2.5 -mx-2 -my-4 px-2 py-4 after:absolute after:w-0 after:content-[''] after:border-r-[red] after:border-r after:border-solid after:right-px after:inset-y-0;
+}
+.rc-table-row-expand-icon {
+  @apply inline-block w-4 h-4 text-[#aaa] leading-4 text-center align-middle border cursor-pointer border-solid border-current;
+}
+.rc-table-row-expand-icon.rc-table-row-expanded::after {
+  @apply content-['-'];
+}
+.rc-table-row-expand-icon.rc-table-row-collapsed::after {
+  @apply content-['+'];
+}
+.rc-table-row-expand-icon.rc-table-row-spaced {
+  @apply invisible;
+}
+.rc-table-title {
+  @apply border px-2 py-4 border-b-0 border-solid border-[red];
+}
+.rc-table-footer {
+  @apply border px-2 py-4 border-t-0 border-solid border-[red];
+}
+.rc-table tfoot td {
+  @apply bg-slate-300
+}
+.rc-table-summary {
+  @apply border-l-[red] border-t-[red] border-t border-solid border-l;
+}
+.rc-table-sticky-holder {
+  @apply sticky z-[2];
+}
+.rc-table-sticky-scroll {
+  @apply sticky z-[2] flex items-center opacity-60 transition-transform border-t-slate-200 border-t border-solid bottom-0 hover:origin-[center_bottom] hover:scale-y-[1.2];
+}
+.rc-table-sticky-scroll-bar {
+  @apply h-2 bg-[#bbb] rounded hover:bg-[#999];
+}
+.rc-table-sticky-scroll-bar-active {
+  @apply bg-[#999];
+}
