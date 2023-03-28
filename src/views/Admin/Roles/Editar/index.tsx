@@ -11,7 +11,7 @@ import { Switch } from '@/components/ui/switch'
 import { Card } from '@/components/utils/Card'
 import Header from '@/components/utils/Header'
 import { IPermission, url as permisosUrl } from '../../Permissions/types'
-import { IOptions, IRol, url } from '../types'
+import { IOptions, IRol, urlRol } from '../types'
 
 interface IProps {
   onClose: () => void
@@ -21,13 +21,13 @@ const Editar = (props: IProps) => {
   const form = useForm()
 
   const mutation = useEditOne({
-    url,
+    url: urlRol,
     _id: props._id,
     onSuccess: () => {
       props.onClose()
     },
   })
-  const data = useGetOne<IRol>({ url, _id: props._id })
+  const data = useGetOne<IRol>({ url: urlRol, _id: props._id })
   const permissions = useGetTable<IPermission>({
     url: permisosUrl,
     params: {

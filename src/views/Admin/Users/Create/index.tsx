@@ -1,19 +1,21 @@
 import React from 'react'
-import { useCreateOne, useGetOptions } from '@/rest/user'
+import { useCreateOne, useGetTable } from '@/rest/user'
 import { FormProvider, useForm } from 'react-hook-form'
 
+import Input from '@/components/form/Input'
 import Select from '@/components/form/Select'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import Header from '@/components/utils/Header'
-import { IOptions, url } from '../types'
+import { IRol, urlRol } from '../../Roles/types'
+import { url } from '../types'
 
 interface IProps {
   onClose: () => void
 }
 const Create = (props: IProps) => {
   const form = useForm()
-  const options = useGetOptions<IOptions>({ url })
+  const roles = useGetTable<IRol>({ url: urlRol })
   const mutation = useCreateOne({
     url,
     onSuccess: () => {
@@ -23,17 +25,50 @@ const Create = (props: IProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
-        <Header onBack={props.onClose} title='Crear Permiso' />
-        <div className='p-5'>
-          <Select
-            name='module'
-            label='Módulo'
-            selectProps={{ options: options.data?.module }}
+        <Header onBack={props.onClose} title='Crear Usuario' />
+        <div className='max-w-md px-9'>
+          <Input
+            name='firstName'
+            label='Nombres'
+            focus
+            rules={{ required: { value: true, message: 'Requerido' } }}
+          />
+          <Input
+            name='lastName'
+            label='Apellidos'
+            rules={{ required: { value: true, message: 'Requerido' } }}
+          />
+          <Input
+            name='email'
+            label='Email'
+            rules={{ required: { value: true, message: 'Requerido' } }}
+          />
+          <Input
+            name='phone'
+            label='Telefono'
+            rules={{ required: { value: true, message: 'Requerido' } }}
+          />
+          <Input
+            name='userName'
+            label='Nombre de Usuario'
+            rules={{ required: { value: true, message: 'Requerido' } }}
+          />
+          <Input
+            name='password'
+            label='Contraseña'
+            inputProps={{ type: 'password' }}
+            rules={{ required: { value: true, message: 'Requerido' } }}
           />
           <Select
-            name='action'
-            label='Acción'
-            selectProps={{ options: options.data?.action }}
+            name='role'
+            label='Rol'
+            rules={{ required: { value: true, message: 'Requerido' } }}
+            selectProps={{
+              options: roles.data?.items.map((x) => ({
+                label: x.name,
+                value: x.id,
+              })),
+            }}
           />
           {mutation.error && (
             <Callout type='danger'>

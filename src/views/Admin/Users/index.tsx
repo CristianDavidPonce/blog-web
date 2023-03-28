@@ -99,7 +99,7 @@ const Users = () => {
                   align: 'left',
                 },
                 {
-                  title: '',
+                  title: ' ',
                   dataIndex: 'id',
                   key: 'operations',
                   align: 'left',

@@ -12,7 +12,7 @@ import { Callout } from '@/components/utils/Callout'
 import { Card } from '@/components/utils/Card'
 import Header from '@/components/utils/Header'
 import { IPermission, url as permisosUrl } from '../../Permissions/types'
-import { IOptions, url } from '../types'
+import { IOptions, urlRol } from '../types'
 
 interface IProps {
   onClose: () => void
@@ -36,7 +36,7 @@ const Create = (props: IProps) => {
 
   const options = useGetOptions<IOptions>({ url: permisosUrl })
   const mutation = useCreateOne({
-    url,
+    url: urlRol,
     onSuccess: () => {
       props.onClose()
     },

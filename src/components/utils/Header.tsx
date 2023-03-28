@@ -10,7 +10,7 @@ interface IProps {
 }
 const Header = (props: IProps) => {
   return (
-    <div className='mb-4 flex items-center justify-between'>
+    <div className='mx-4 mb-4 flex items-center justify-between'>
       <div className='flex flex-row items-center justify-center gap-1'>
         {props.onBack && (
           <Button onClick={props.onBack} variant='ghost'>

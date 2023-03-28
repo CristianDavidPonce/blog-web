@@ -1,20 +1,22 @@
 .rc-table {
-  @apply relative border border-slate-100 rounded-md dark:border-slate-800;
+  @apply relative ;
 }
 
 .rc-table-rtl {
   direction: rtl;
 }
 .rc-table table {
-  @apply w-full border border-slate-100 rounded-md dark:border-slate-800;
+  @apply w-full border border-slate-100 dark:border-slate-800;
 }
 .rc-table th {
-  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider;
+  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider  bg-slate-50 dark:bg-slate-800 ;
 }
 .rc-table td {
-  @apply px-4 py-2 whitespace-nowrap text-sm;
+  @apply px-4 py-2 whitespace-nowrap text-sm bg-white dark:bg-slate-900;
 }
-
+.rc-table body {
+  @apply divide-y divide-slate-500 bg-black dark:bg-slate-900 dark:divide-slate-800;
+}
 .rc-table-cell-fix-left,
 .rc-table-cell-fix-right {
   @apply z-[1];
@@ -40,7 +42,7 @@
 }
 .rc-table-cell-fix-right-first,
 .rc-table-cell-fix-right-last {
-  @apply shadow-[-1px_0_0_red];
+  @apply shadow-[-1px_0_0_redgrey];
 }
 .rc-table-rtl .rc-table-cell-fix-right-first,
 .rc-table-rtl .rc-table-cell-fix-right-last {
@@ -89,26 +91,19 @@
   @apply text-center;
 }
 .rc-table thead .rc-table-cell-scrollbar::after {
-  @apply absolute w-px content-[''] -left-px inset-y-0;
+  @apply absolute w-px -left-px inset-y-0;
 
 }
 .rc-table-rtl.rc-table thead .rc-table-cell-scrollbar::after {
   @apply left-auto -right-px;
 }
-.rc-table-header {
-  @apply bg-slate-50 dark:bg-slate-800 ;
-}
+
 .rc-table-placeholder {
   @apply text-center;
 }
-.rc-table  td {
-  @apply bg-white
-}
-.rc-table-body {
-  @apply bg-white divide-y divide-slate-500 dark:bg-slate-900 dark:divide-slate-800;
-}
-.rc-table-fixed-column .rc-table-body::after {
-  @apply absolute z-[1]  divide-slate-200 dark:bg-slate-900 dark:divide-slate-800 border-solid right-0 inset-y-0;
+
+.rc-table-fixed-column ::after {
+  @apply absolute z-[1]  divide-slate-200 dark:divide-slate-800 border-solid right-0 inset-y-0;
 }
 .rc-table-expanded-row .rc-table-cell {
   @apply shadow-[inset_0_8px_8px_-8px_green];

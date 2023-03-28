@@ -16,14 +16,14 @@ import {
 import Header from '@/components/utils/Header'
 import Create from './Create'
 import Editar from './Editar'
-import { IRol, url } from './types'
+import { IRol, urlRol } from './types'
 
 const Roles = () => {
-  const data = useGet<IRol>({ url })
+  const data = useGet<IRol>({ url: urlRol })
 
   const [create, setCreate] = useBoolean()
   const edit = useEdit()
-  const borrar = useDeleteOne({ url })
+  const borrar = useDeleteOne({ url: urlRol })
 
   return (
     <div>
@@ -80,7 +80,7 @@ const Roles = () => {
                   render: (x) => x && x.length,
                 },
                 {
-                  title: '',
+                  title: ' ',
                   dataIndex: 'id',
                   key: 'operations',
                   align: 'left',

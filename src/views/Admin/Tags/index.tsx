@@ -1,12 +1,11 @@
 import React from 'react'
 import useEdit from '@/hooks/useEdit'
-import { useDeleteOne, useGet, useGetOptions } from '@/rest/user'
-import { optionMatch } from '@/utils/optionMatch'
+import { useDeleteOne, useGet } from '@/rest/user'
 import { useBoolean } from 'ahooks'
 import { Delete, Edit, LucideMoreVertical } from 'lucide-react'
 import moment from 'moment'
 
-import { Filter, Table } from '@/components/table'
+import { Table } from '@/components/table'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,14 +16,14 @@ import {
 import Header from '@/components/utils/Header'
 import Create from './Create'
 import Editar from './Editar'
-import { IOptions, IPermission, url } from './types'
+import { ITag, urlTags } from './types'
 
-const Permissions = () => {
-  const data = useGet<IPermission>({ url })
-  const options = useGetOptions<IOptions>({ url })
+const Tags = () => {
+  const data = useGet<ITag>({ url: urlTags })
+
   const [create, setCreate] = useBoolean()
   const edit = useEdit()
-  const borrar = useDeleteOne({ url })
+  const borrar = useDeleteOne({ url: urlTags })
 
   return (
     <div>
@@ -33,7 +32,7 @@ const Permissions = () => {
       {!create && !edit.visible && (
         <>
           <Header
-            title='Permisos'
+            title='Tags'
             actions={<Button onClick={setCreate.setTrue}>Crear</Button>}
           />
           <Table
@@ -59,31 +58,11 @@ const Permissions = () => {
                   ),
                 },
                 {
-                  title: (
-                    <Filter
-                      title='Modulo'
-                      options={options.data?.module}
-                      filter='modules'
-                    />
-                  ),
-                  dataIndex: 'module',
-                  key: 'module',
+                  title: 'Nombre',
+                  dataIndex: 'name',
+                  key: 'name',
                   width: 100,
                   align: 'left',
-                  render: (x) => optionMatch(x, options.data?.module),
-                },
-                {
-                  title: (
-                    <Filter
-                      title='Acciones'
-                      options={options.data?.action}
-                      filter='actions'
-                    />
-                  ),
-                  dataIndex: 'action',
-                  key: 'action',
-                  width: 100,
-                  render: (x) => optionMatch(x, options.data?.action),
                 },
                 {
                   title: ' ',
@@ -91,7 +70,7 @@ const Permissions = () => {
                   key: 'operations',
                   align: 'left',
                   width: 50,
-                  fixed: 'right',
+
                   render: (x) => (
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -133,4 +112,4 @@ const Permissions = () => {
   )
 }
 
-export default Permissions
+export default Tags

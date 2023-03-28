@@ -1,7 +1,7 @@
 import { IOption, IRecord } from '@/types/types'
 import { IPermission } from '../Permissions/types'
 
-export const url = 'roles'
+export const urlRol = 'roles'
 export interface IRol extends IRecord {
   name: string
   description?: string

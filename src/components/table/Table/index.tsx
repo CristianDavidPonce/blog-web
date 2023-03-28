@@ -29,8 +29,9 @@ const Table = <T extends object>(props: {
     <div className='flex h-[calc(100vh-150px)] flex-col justify-between'>
       <Tabla<T>
         data={props.data?.items}
-        scroll={{ x: 1300, y: 'calc(100vh - 240px)' }}
+        scroll={{ x: 500, y: 'calc(100vh - 240px)' }}
         emptyText={props.loading ? <Skeleton /> : 'Sin Datos 🥲'}
+        rowClassName={'border-b border-slate-100 dark:border-slate-700'}
         {...props.tableProps}
       />
       <Pagination

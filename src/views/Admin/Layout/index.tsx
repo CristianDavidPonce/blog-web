@@ -13,8 +13,11 @@ export function Layout({ children }: LayoutProps) {
   return (
     <>
       <SiteHeader />
-      <div className='grid grid-cols-4 xl:grid-cols-5'>
-        <aside className='h-screen border-r border-r-slate-200 p-2 dark:border-r-slate-700'>
+      <div
+        className='mt-[110px] grid grid-cols-4 xl:grid-cols-5'
+        style={{ marginTop: -100 }}
+      >
+        <aside className='h-screen border-r border-r-slate-200 p-2 pt-[110px] dark:border-r-slate-700'>
           <Item
             label='Inicio'
             href='/admin/permissions'
@@ -33,7 +36,7 @@ export function Layout({ children }: LayoutProps) {
           />
           <Item
             label='Tags'
-            href='/admin/permissions'
+            href='/admin/tags'
             icon={<Tags className='h-4 w-4' />}
           />
           <h3 className='m-2 font-semibold'>Configuraciones</h3>
@@ -53,7 +56,7 @@ export function Layout({ children }: LayoutProps) {
             icon={<Users className='h-4 w-4' />}
           />
         </aside>
-        <div className='col-span-3 p-5 xl:col-span-4'>{children}</div>
+        <div className='col-span-3 pt-[110px] xl:col-span-4'>{children}</div>
       </div>
     </>
   )

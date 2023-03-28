@@ -1,5 +1,5 @@
 export interface IRecord {
-  id: string
+  id: number
   createdByName: string
   updatedByName: string
   business: string
