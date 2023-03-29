@@ -6,16 +6,16 @@ import Select from '@/components/form/Select'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import Header from '@/components/utils/Header'
-import { IOptions, url } from '../types'
+import { IOptions, permissionsUrl } from '../types'
 
 interface IProps {
   onClose: () => void
 }
 const Create = (props: IProps) => {
   const form = useForm()
-  const options = useGetOptions<IOptions>({ url })
+  const options = useGetOptions<IOptions>({ url: permissionsUrl })
   const mutation = useCreateOne({
-    url,
+    url: permissionsUrl,
     onSuccess: () => {
       props.onClose()
     },

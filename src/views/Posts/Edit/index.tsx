@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useVisible from '@/hooks/useVisible'
-import { useCreateOne, useGetTable } from '@/rest/user'
+import { useEditOne, useGetOne, useGetTable } from '@/rest/user'
 import CreateTag from '@/views/Admin/Tags/Create'
 import { ITag, urlTags } from '@/views/Admin/Tags/types'
 import { OutputData } from '@editorjs/editorjs'
@@ -12,26 +12,37 @@ import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import { Editor } from '@/components/utils/Editor'
 import Header from '@/components/utils/Header'
-import { postsOwnUrl } from '../types'
+import { ICreatePost, IPost, postsOwnUrl } from '../types'
 
 interface IProps {
   onClose: () => void
-  id: number
+  id: number | string
 }
 const Edit = (props: IProps) => {
-  const form = useForm()
+  const form = useForm<ICreatePost>()
   const [data, setData] = useState<OutputData>()
+
   const tags = useGetTable<ITag>({
     url: urlTags,
     params: { params: { limit: 100000, page: 1 } },
   })
+  const datos = useGetOne<IPost>({ url: postsOwnUrl, _id: props.id })
   const createTag = useVisible()
-  const mutation = useCreateOne({
+  const mutation = useEditOne({
     url: postsOwnUrl,
     onSuccess: () => {
       props.onClose()
     },
+    _id: props.id,
   })
+  useEffect(() => {
+    if (datos.data) {
+      form.reset({
+        title: datos.data.title,
+        tags: datos.data.tags?.map((x) => x.id),
+      })
+    }
+  }, [datos.data])
 
   return (
     <>
@@ -45,7 +56,7 @@ const Edit = (props: IProps) => {
               })}
             >
               <Header
-                title='Crear Post'
+                title='Editar Post'
                 actions={
                   <Button type='submit' disabled={mutation.isLoading}>
                     Crear
@@ -85,7 +96,12 @@ const Edit = (props: IProps) => {
                   </Callout>
                 )}
               </div>
-              <Editor onChange={setData} />
+              {datos.data?.content && (
+                <Editor
+                  onChange={setData}
+                  content={{ blocks: datos.data?.content }}
+                />
+              )}
             </form>
           </FormProvider>
         </>

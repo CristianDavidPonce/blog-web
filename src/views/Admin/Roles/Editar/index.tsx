@@ -10,12 +10,12 @@ import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 import { Card } from '@/components/utils/Card'
 import Header from '@/components/utils/Header'
-import { IPermission, url as permisosUrl } from '../../Permissions/types'
+import { IPermission, permissionsUrl } from '../../Permissions/types'
 import { IOptions, IRol, urlRol } from '../types'
 
 interface IProps {
   onClose: () => void
-  _id: string
+  _id: string | number
 }
 const Editar = (props: IProps) => {
   const form = useForm()
@@ -29,7 +29,7 @@ const Editar = (props: IProps) => {
   })
   const data = useGetOne<IRol>({ url: urlRol, _id: props._id })
   const permissions = useGetTable<IPermission>({
-    url: permisosUrl,
+    url: permissionsUrl,
     params: {
       params: {
         limit: 10000,
@@ -51,7 +51,7 @@ const Editar = (props: IProps) => {
   }, [data.data])
   const permisos = groupBy(permissions.data?.items, (x) => x.module)
 
-  const options = useGetOptions<IOptions>({ url: permisosUrl })
+  const options = useGetOptions<IOptions>({ url: permissionsUrl })
   useEffect(() => {
     if (data.data) {
       form.reset({ name: data.data.name, description: data.data.description })

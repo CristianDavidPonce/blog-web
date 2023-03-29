@@ -6,23 +6,23 @@ import Select from '@/components/form/Select'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import Header from '@/components/utils/Header'
-import { IOptions, IPermission, url } from '../types'
+import { IOptions, IPermission, permissionsUrl } from '../types'
 
 interface IProps {
   onClose: () => void
-  _id: string
+  _id: string | number
 }
 const Editar = (props: IProps) => {
   const form = useForm()
-  const options = useGetOptions<IOptions>({ url })
+  const options = useGetOptions<IOptions>({ url: permissionsUrl })
   const mutation = useEditOne({
-    url,
+    url: permissionsUrl,
     _id: props._id,
     onSuccess: () => {
       props.onClose()
     },
   })
-  const data = useGetOne<IPermission>({ url, _id: props._id })
+  const data = useGetOne<IPermission>({ url: permissionsUrl, _id: props._id })
 
   useEffect(() => {
     if (data.data) {

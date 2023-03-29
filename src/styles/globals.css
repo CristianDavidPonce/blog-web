@@ -2,4 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+code {
+  @apply h-full text-sm flex flex-col bg-slate-800 text-slate-100 rounded-md my-2 p-4
+}
 
+h2 {
+  @apply font-semibold text-lg
+}

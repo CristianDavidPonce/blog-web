@@ -43,10 +43,12 @@ export function SiteHeader() {
                     <DropdownMenuContent>
                       <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <User className='mr-2 h-4 w-4' />
-                        Perfil
-                      </DropdownMenuItem>
+                      <Link href={'/profile'}>
+                        <DropdownMenuItem>
+                          <User className='mr-2 h-4 w-4' />
+                          Perfil
+                        </DropdownMenuItem>
+                      </Link>
                       <Link href={'/admin/home'}>
                         <DropdownMenuItem>
                           <Settings className='mr-2 h-4 w-4' />

@@ -181,7 +181,7 @@ export const useGetOne = <T,>({
   onError = () => null,
 }: {
   url: string
-  _id?: string
+  _id?: string | number
   onSuccess?: (data: T) => void
   enabled?: boolean
   key?: string
@@ -192,7 +192,7 @@ export const useGetOne = <T,>({
     (x) => x.authUser
   )
   const { toast } = useToast()
-  const getOne = async (_id?: string) => {
+  const getOne = async (_id?: string | number) => {
     const { data } = await apiUser.get<T>(_id ? `${url}/${_id}` : `${url}`, {
       ...config,
       headers: {
@@ -378,7 +378,7 @@ export const useEditOne = <T,>({
   url: string
   noUrl?: boolean
   onSuccess?: (data: IQueryResponse) => void
-  _id: string
+  _id: string | number
   invalidate?: boolean
   snack?: boolean
 }) => {

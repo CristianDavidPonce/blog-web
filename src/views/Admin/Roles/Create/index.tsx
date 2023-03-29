@@ -11,7 +11,7 @@ import { Switch } from '@/components/ui/switch'
 import { Callout } from '@/components/utils/Callout'
 import { Card } from '@/components/utils/Card'
 import Header from '@/components/utils/Header'
-import { IPermission, url as permisosUrl } from '../../Permissions/types'
+import { IPermission, permissionsUrl } from '../../Permissions/types'
 import { IOptions, urlRol } from '../types'
 
 interface IProps {
@@ -24,7 +24,7 @@ interface IForm {
 const Create = (props: IProps) => {
   const form = useForm<IForm>()
   const permissions = useGetTable<IPermission>({
-    url: permisosUrl,
+    url: permissionsUrl,
     params: { params: { limit: 10000, page: 1 } },
   })
 
@@ -34,7 +34,7 @@ const Create = (props: IProps) => {
   )
   const permisos = groupBy(permissions.data?.items, (x) => x.module)
 
-  const options = useGetOptions<IOptions>({ url: permisosUrl })
+  const options = useGetOptions<IOptions>({ url: permissionsUrl })
   const mutation = useCreateOne({
     url: urlRol,
     onSuccess: () => {

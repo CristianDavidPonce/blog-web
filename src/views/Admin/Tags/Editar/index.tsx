@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
-import { useEditOne, useGetOne, useGetOptions } from '@/rest/user'
+import { useEditOne, useGetOne } from '@/rest/user'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import Select from '@/components/form/Select'
+import Input from '@/components/form/Input'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import Header from '@/components/utils/Header'
-import { IOptions, ITag, urlTags } from '../types'
+import { ITag, urlTags } from '../types'
 
 interface IProps {
   onClose: () => void
-  _id: string
+  _id: string | number
 }
 const Editar = (props: IProps) => {
   const form = useForm()
-  const options = useGetOptions<IOptions>({ url: urlTags })
+
   const mutation = useEditOne({
     url: urlTags,
     _id: props._id,
@@ -32,18 +32,9 @@ const Editar = (props: IProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
-        <Header onBack={props.onClose} title='Editar Permiso' />
-        <div className='p-5'>
-          <Select
-            name='module'
-            label='Módulo'
-            selectProps={{ options: options.data?.module }}
-          />
-          <Select
-            name='action'
-            label='Acción'
-            selectProps={{ options: options.data?.action }}
-          />
+        <Header onBack={props.onClose} title='Editar Tag' />
+        <div className='p-9'>
+          <Input name='name' label='Nombre' />
           {mutation.error && (
             <Callout type='danger'>
               {mutation.error.response?.data.message}

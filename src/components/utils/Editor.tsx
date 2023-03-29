@@ -48,7 +48,7 @@ export function Editor({
         },
       })
     }
-  }, [content])
+  }, [])
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {

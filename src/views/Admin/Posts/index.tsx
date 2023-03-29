@@ -1,9 +1,8 @@
 import React from 'react'
 import useEdit from '@/hooks/useEdit'
-import useVisible from '@/hooks/useVisible'
 import { useDeleteOne, useGet } from '@/rest/user'
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu'
-import { Delete, EditIcon, LucideMoreVertical } from 'lucide-react'
+import { useBoolean } from 'ahooks'
+import { Delete, Edit, LucideMoreVertical } from 'lucide-react'
 import moment from 'moment'
 
 import { Table } from '@/components/table'
@@ -15,25 +14,21 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import Header from '@/components/utils/Header'
-import Create from './Create'
-import Edit from './Edit'
-import { IPost, postsOwnUrl } from './types'
+import { IPermission, postUrl } from './types'
 
 const Posts = () => {
-  const create = useVisible()
-  const data = useGet<IPost>({ url: postsOwnUrl })
+  const data = useGet<IPermission>({ url: postUrl })
+  const [create, setCreate] = useBoolean()
   const edit = useEdit()
-  const borrar = useDeleteOne({ url: postsOwnUrl })
+  const borrar = useDeleteOne({ url: postUrl })
 
   return (
-    <>
-      {create.visible && <Create onClose={create.close} />}
-      {edit.visible && <Edit onClose={edit.close} id={edit.value || ''} />}
-      {!create.visible && !edit.visible && (
+    <div>
+      {!create && !edit.visible && (
         <>
           <Header
-            title='Mis Posts'
-            actions={<Button onClick={create.open}>Create</Button>}
+            title='Posts'
+            actions={<Button onClick={setCreate.setTrue}>Crear</Button>}
           />
           <Table
             data={data.data}
@@ -90,6 +85,7 @@ const Posts = () => {
                   key: 'operations',
                   align: 'left',
                   width: 50,
+                  fixed: 'right',
                   render: (x) => (
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -104,11 +100,10 @@ const Posts = () => {
                           }}
                         >
                           <div className='flex items-center gap-2'>
-                            <EditIcon className='h4 w-4' />
+                            <Edit className='h4 w-4' />
                             Editar
                           </div>
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
                         <DropdownMenuItem
                           onClick={() => {
                             borrar.mutate(x)
@@ -128,7 +123,7 @@ const Posts = () => {
           />
         </>
       )}
-    </>
+    </div>
   )
 }
 

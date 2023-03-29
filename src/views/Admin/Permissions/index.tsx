@@ -17,14 +17,14 @@ import {
 import Header from '@/components/utils/Header'
 import Create from './Create'
 import Editar from './Editar'
-import { IOptions, IPermission, url } from './types'
+import { IOptions, IPermission, permissionsUrl } from './types'
 
 const Permissions = () => {
-  const data = useGet<IPermission>({ url })
-  const options = useGetOptions<IOptions>({ url })
+  const data = useGet<IPermission>({ url: permissionsUrl })
+  const options = useGetOptions<IOptions>({ url: permissionsUrl })
   const [create, setCreate] = useBoolean()
   const edit = useEdit()
-  const borrar = useDeleteOne({ url })
+  const borrar = useDeleteOne({ url: permissionsUrl })
 
   return (
     <div>

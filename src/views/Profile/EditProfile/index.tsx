@@ -1,30 +1,23 @@
 import React, { useEffect } from 'react'
-import { useEditOne, useGetOne, useGetTable } from '@/rest/user'
+import { useEditOne, useGetOne } from '@/rest/user'
+import { IEdit, IUser } from '@/views/Admin/Users/types'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import Input from '@/components/form/Input'
-import Select from '@/components/form/Select'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
-import Header from '@/components/utils/Header'
-import { IRol, urlRol } from '../../Roles/types'
-import { IEdit, IUser, url } from '../types'
+import { url } from './types'
 
-interface IProps {
-  onClose: () => void
-  _id: string | number
-}
-const Editar = (props: IProps) => {
+interface IProps {}
+const EditProfile = (props: IProps) => {
   const form = useForm<IEdit>()
-  const roles = useGetTable<IRol>({ url: urlRol })
   const mutation = useEditOne({
     url,
-    _id: props._id,
-    onSuccess: () => {
-      props.onClose()
-    },
+    _id: '',
+    noUrl: true,
+    onSuccess: () => {},
   })
-  const data = useGetOne<IUser>({ url, _id: props._id })
+  const data = useGetOne<IUser>({ url })
 
   useEffect(() => {
     if (data.data) {
@@ -33,16 +26,13 @@ const Editar = (props: IProps) => {
         userName: data.data.userName,
         firstName: data.data.firstName,
         lastName: data.data.lastName,
-        isActive: data.data.isActive,
-        role: data.data.role.id,
       })
     }
   }, [data.data])
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
-        <Header onBack={props.onClose} title='Editar Permiso' />
-        <div className='max-w-md px-9'>
+        <div className='max-w-md'>
           <Input
             name='firstName'
             label='Nombres'
@@ -59,23 +49,12 @@ const Editar = (props: IProps) => {
             label='Email'
             rules={{ required: { value: true, message: 'Requerido' } }}
           />
-          <Input name='phone' label='Telefono' />
           <Input
             name='userName'
             label='Nombre de Usuario'
             rules={{ required: { value: true, message: 'Requerido' } }}
           />
-          <Select
-            name='role'
-            label='Rol'
-            rules={{ required: { value: true, message: 'Requerido' } }}
-            selectProps={{
-              options: roles.data?.items.map((x) => ({
-                label: x.name,
-                value: x.id,
-              })),
-            }}
-          />
+
           {mutation.error && (
             <Callout type='danger'>
               {mutation.error.response?.data.message}
@@ -90,4 +69,4 @@ const Editar = (props: IProps) => {
   )
 }
 
-export default Editar
+export default EditProfile
