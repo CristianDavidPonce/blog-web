@@ -1,19 +1,18 @@
 import React from 'react'
-import { useCreateOne, useGetOptions } from '@/rest/user'
+import { useCreateOne } from '@/rest/user'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import Select from '@/components/form/Select'
+import Input from '@/components/form/Input'
 import { Button } from '@/components/ui/button'
 import { Callout } from '@/components/utils/Callout'
 import Header from '@/components/utils/Header'
-import { IOptions, urlTags } from '../types'
+import { urlTags } from '../types'
 
 interface IProps {
   onClose: () => void
 }
 const Create = (props: IProps) => {
   const form = useForm()
-  const options = useGetOptions<IOptions>({ url: urlTags })
   const mutation = useCreateOne({
     url: urlTags,
     onSuccess: () => {
@@ -23,18 +22,9 @@ const Create = (props: IProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
-        <Header onBack={props.onClose} title='Crear Permiso' />
-        <div className='p-5'>
-          <Select
-            name='module'
-            label='Módulo'
-            selectProps={{ options: options.data?.module }}
-          />
-          <Select
-            name='action'
-            label='Acción'
-            selectProps={{ options: options.data?.action }}
-          />
+        <Header onBack={props.onClose} title='Crear Tag' />
+        <div className='p-9'>
+          <Input name='name' label='Nombre' focus />
           {mutation.error && (
             <Callout type='danger'>
               {mutation.error.response?.data.message}

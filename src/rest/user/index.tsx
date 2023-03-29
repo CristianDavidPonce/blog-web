@@ -75,6 +75,8 @@ export const useGet = <T,>({
       refetchOnWindowFocus: false,
       onError: async (error) => {
         toast({
+          title: 'Error',
+          variant: 'destructive',
           description:
             error.response?.data.message || error.code || messages.unknownError,
         })
@@ -101,9 +103,15 @@ export const useGetTable = <T,>({
   const getTable = async (params?: IQueries) => {
     const { data } = await apiUser.get(url, {
       params: { ...params?.params, ...params?.filters },
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     })
     return data
   }
+  const user = useSelector<IRootState, IRootState['authUser']>(
+    (x) => x.authUser
+  )
   const { toast } = useToast()
   return useQuery<ITable<T>, AxiosError<IQueryResponseError>>(
     [key || url, params],
