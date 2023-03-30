@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
 import useEdit from '@/hooks/useEdit'
 import useVisible from '@/hooks/useVisible'
 import { useDeleteOne, useGet } from '@/rest/user'
