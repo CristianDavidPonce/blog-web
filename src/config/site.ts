@@ -19,10 +19,6 @@ export const siteConfig: SiteConfig = {
       title: 'Inicio',
       href: '/',
     },
-    {
-      title: 'Mis Posts',
-      href: '/posts',
-    },
   ],
   links: {
     twitter: 'https://twitter.com/shadcn',

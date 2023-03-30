@@ -1,15 +1,16 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { IRootState } from '@/store/reducers'
 import { IAuthUserAction } from '@/store/reducers/User/authUser'
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu'
 import { Dispatch } from '@reduxjs/toolkit'
-import { LogOut, Settings, User } from 'lucide-react'
+import { FileEdit, LogOut, Settings, User } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { siteConfig } from '@/config/site'
 import { MainNav } from '@/components/main-nav'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from './ui/avatar'
 import {
   DropdownMenuContent,
@@ -24,6 +25,7 @@ export function SiteHeader() {
     (x) => x.authUser
   )
   const dispatch = useDispatch<Dispatch<IAuthUserAction>>()
+  const router = useRouter()
   return (
     <header className='sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900'>
       <div className='container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0'>
@@ -31,6 +33,19 @@ export function SiteHeader() {
         <div className='flex flex-1 items-center justify-end space-x-4'>
           <nav className='flex items-center space-x-1'>
             <div className='flex gap-4'>
+              {user.isValidated && (
+                <Button
+                  variant={'outline'}
+                  onClick={() => {
+                    router.push('/posts')
+                  }}
+                >
+                  <div className='flex items-center gap-2'>
+                    <FileEdit className='h-4' />
+                    Mis Posts
+                  </div>
+                </Button>
+              )}
               <ThemeToggle />
               {user.isValidated ? (
                 <div className='flex gap-4'>

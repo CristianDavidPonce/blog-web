@@ -6,6 +6,7 @@ import { groupBy } from 'lodash'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import Input from '@/components/form/Input'
+import InputArea from '@/components/form/InputArea'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 import { Callout } from '@/components/utils/Callout'
@@ -57,9 +58,9 @@ const Create = (props: IProps) => {
             </Button>
           }
         />
-        <div className='p-5'>
+        <div className='px-9'>
           <Input name='name' label='Nombre' />
-          <Input name='description' label='Descripcion' />
+          <InputArea name='description' label='Descripcion' />
           <div className='xs:grid-cols-1 mb-4 grid grid-cols-4 gap-4'>
             {Object.keys(permisos).map((x) => (
               <Card key={x}>

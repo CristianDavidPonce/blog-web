@@ -33,7 +33,7 @@ const Editar = (props: IProps) => {
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
         <Header onBack={props.onClose} title='Editar Permiso' />
-        <div className='p-5'>
+        <div className='mx-auto mt-10 flex max-w-[500px] flex-col'>
           <Select
             name='module'
             label='Módulo'
@@ -49,7 +49,11 @@ const Editar = (props: IProps) => {
               {mutation.error.response?.data.message}
             </Callout>
           )}
-          <Button type='submit' disabled={mutation.isLoading}>
+          <Button
+            type='submit'
+            disabled={mutation.isLoading}
+            className='justify-center'
+          >
             Editar
           </Button>
         </div>
