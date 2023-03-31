@@ -473,5 +473,5 @@ export const usePatchOne = <T,>({
 
 const messages = {
   unknownError: 'Error desconocido',
-  actionSuccess: 'Se realizó la acción con éxito',
+  actionSuccess: 'La acción se realizó con éxito',
 }

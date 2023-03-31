@@ -20,18 +20,18 @@ export function Layout({ children }: LayoutProps) {
         <aside className='h-screen border-r border-r-slate-200 p-2 pt-[110px] dark:border-r-slate-700'>
           <Item
             label='Inicio'
-            href='/admin/permissions'
+            href='/admin/home'
             icon={<Home className='h-4 w-4' />}
           />
           <h3 className='m-2 font-semibold'>Blog</h3>
           <Item
-            label='Articulos'
-            href='/admin/permissions'
+            label='Posts'
+            href='/admin/posts'
             icon={<File className='h-4 w-4' />}
           />
           <Item
             label='Comentarios'
-            href='/admin/permissions'
+            href='/admin/comments'
             icon={<Mic className='h-4 w-4' />}
           />
           <Item

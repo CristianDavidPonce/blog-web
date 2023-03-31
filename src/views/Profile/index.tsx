@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card } from '@/components/utils/Card'
 import { IOptions, permissionsUrl } from '../Admin/Permissions/types'
 import { IUser } from '../Admin/Users/types'
+import ChangePassword from './ChangePassword'
 import EditProfile from './EditProfile'
 import { url } from './EditProfile/types'
 
@@ -60,9 +61,10 @@ const Profile = () => {
           </div>
         </TabsContent>
         <TabsContent value='password'>
-          <p className='text-sm text-slate-500 dark:text-slate-400'>
+          <p className='mb-4 text-sm text-slate-500 dark:text-slate-400'>
             Puedes cambiar tu contraseña aqui
           </p>
+          <ChangePassword />
         </TabsContent>
       </Tabs>
     </div>

@@ -12,7 +12,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: 'Blog',
+  name: 'CrisBlog',
   description: 'blog',
   mainNav: [
     {

@@ -22,9 +22,9 @@ const Home = () => {
               <AvatarFallback>{item.createdByName[0]}</AvatarFallback>
             </Avatar>
             <p className='text-sm text-slate-800 dark:text-slate-300'>
-              {item.autor?.firstName || item.createdByName}
+              {item.author?.firstName + ' ' + item.author.lastName[0] + '.' ||
+                item.createdByName}
             </p>
-            <span>·</span>
             <p className='text-sm text-slate-500'>
               {moment(item.createdAt).format('L')}
             </p>

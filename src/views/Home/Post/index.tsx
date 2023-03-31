@@ -25,7 +25,10 @@ const Post = () => {
               <AvatarFallback>{datos.data?.createdByName[0]}</AvatarFallback>
             </Avatar>
             <p className='text-sm text-slate-800 dark:text-slate-300'>
-              {datos.data?.createdByName}
+              {datos.data?.author.firstName +
+                ' ' +
+                datos.data?.author.lastName[0] +
+                '.'}
             </p>
             <span>·</span>
             <p className='text-sm text-slate-500'>
@@ -42,6 +45,18 @@ const Post = () => {
         {datos.data?.content && (
           <EditorJsRenderer data={{ blocks: datos.data.content }} />
         )}
+        <div className='mt-4 flex flex-wrap gap-2'>
+          {datos.data?.tags.map((x) => (
+            <div
+              key={x.id}
+              className={
+                'rounded-md bg-slate-200 px-2 py-0.5 text-sm dark:bg-slate-800'
+              }
+            >
+              {x.name}
+            </div>
+          ))}
+        </div>
         <Comments />
       </div>
     </>

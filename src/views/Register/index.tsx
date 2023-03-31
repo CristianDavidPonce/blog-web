@@ -1,40 +1,21 @@
 import Link from 'next/link'
 import router from 'next/router'
-import { useCreateOne, useGetOne } from '@/rest/user'
-import { IRootState } from '@/store/reducers'
-import { IAuthUserAction } from '@/store/reducers/User/authUser'
-import { Dispatch } from '@reduxjs/toolkit'
+import { useCreateOne } from '@/rest/user'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { IValidateToken } from '@/types/types'
 import Input from '@/components/form/Input'
 import { Button } from '@/components/ui/button'
-import { ILoginForm } from './types'
 import { Callout } from '@/components/utils/Callout'
+import { ILoginForm } from './types'
 
-const url = '/login'
-const urlProfile = '/profile'
-const Login = () => {
+const url = 'users/register/user'
+const Register = () => {
   const form = useForm<ILoginForm>()
-  const dispatch = useDispatch<Dispatch<IAuthUserAction>>()
-  const user = useSelector<IRootState, IRootState['authUser']>(
-    (x) => x.authUser
-  )
-  const validar = useGetOne<IValidateToken>({
-    url: urlProfile,
-    key: 'validatedash',
-    enabled: user.token !== undefined,
-    onSuccess: (data) => {
-      dispatch({ type: 'setUser', user: data })
-      router.push('/')
-    },
-  })
+
   const mutation = useCreateOne<ILoginForm>({
     url,
-    snack: false,
     onSuccess: (data: any) => {
-      dispatch({ type: 'setToken', token: data.access_token })
+      router.push('/login')
     },
   })
   return (
@@ -46,7 +27,7 @@ const Login = () => {
         style={{ width: '100%', maxWidth: '24rem' }}
       >
         <h1 className='mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700'>
-          Iniciar Sesión
+          Registrarse
         </h1>
         <p className='text-sm text-slate-500 dark:text-slate-400'>
           Ingresa tus datos a continuación
@@ -55,16 +36,31 @@ const Login = () => {
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit((x) => mutation.mutate(x))}>
             <Input
-              name='username'
-              label='Usuario'
+              name='firstName'
+              label='Nombres'
               focus
-              rules={{ required: { message: 'Requerido', value: true } }}
+              rules={{ required: { value: true, message: 'Requerido' } }}
+            />
+            <Input
+              name='lastName'
+              label='Apellidos'
+              rules={{ required: { value: true, message: 'Requerido' } }}
+            />
+            <Input
+              name='email'
+              label='Email'
+              rules={{ required: { value: true, message: 'Requerido' } }}
+            />
+            <Input
+              name='userName'
+              label='Nombre de Usuario'
+              rules={{ required: { value: true, message: 'Requerido' } }}
             />
             <Input
               name='password'
               label='Contraseña'
               inputProps={{ type: 'password' }}
-              rules={{ required: { message: 'Requerido', value: true } }}
+              rules={{ required: { value: true, message: 'Requerido' } }}
             />
             {mutation.error && (
               <Callout type='danger'>
@@ -74,15 +70,15 @@ const Login = () => {
             <Button
               className='w-full justify-center'
               type='submit'
-              disabled={validar.isFetching || mutation.isLoading}
+              disabled={mutation.isLoading}
             >
-              Ingresar
+              Registrarse
             </Button>
             <div className='h-4'></div>
             <div className='flex gap-2'>
-              <p className=' text-sm text-slate-500'>No tienes una cuenta</p>
-              <Link href={'./register'}>
-                <p className={'text-sm text-blue-500'}>Regístrate</p>
+              <p className=' text-sm text-slate-500'>Ya tienes una cuenta</p>
+              <Link href={'/login'}>
+                <p className={'text-sm text-blue-500'}>Inicia sesión</p>
               </Link>
             </div>
           </form>
@@ -92,4 +88,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

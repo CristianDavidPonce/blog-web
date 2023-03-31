@@ -1,9 +1,11 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useCreateOne, useGetTable } from '@/rest/user'
+import { IRootState } from '@/store/reducers'
 import { MessageCircle } from 'lucide-react'
 import moment from 'moment'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 
 import InputArea from '@/components/form/InputArea'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -31,6 +33,9 @@ const Comments = () => {
       },
     },
   })
+  const user = useSelector<IRootState, IRootState['authUser']>(
+    (x) => x.authUser
+  )
   return (
     <div className='my-4 border-t border-slate-200 py-4'>
       <div className='flex items-center gap-2'>
@@ -55,7 +60,9 @@ const Comments = () => {
               }}
             />
             <div className='flex justify-end'>
-              <Button type='submit'>Comentar</Button>
+              <Button type='submit' disabled={!user.isValidated}>
+                Comentar
+              </Button>
             </div>
           </form>
         </FormProvider>

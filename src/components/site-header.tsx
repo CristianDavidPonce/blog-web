@@ -85,14 +85,14 @@ export function SiteHeader() {
               ) : (
                 <>
                   <Link
-                    href={siteConfig.links.github}
+                    href={'/register'}
                     className={buttonVariants({
                       variant: 'outline',
                     })}
                   >
                     Registrarse
                   </Link>
-                  <Link href={'./login'} className={buttonVariants({})}>
+                  <Link href={'/login'} className={buttonVariants({})}>
                     Iniciar Sesión
                   </Link>
                 </>

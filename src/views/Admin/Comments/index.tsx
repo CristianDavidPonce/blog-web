@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDeleteOne, useGet } from '@/rest/user'
+import { IComment } from '@/views/Home/Post/Comments/types'
 import { Delete, LucideMoreVertical } from 'lucide-react'
 import moment from 'moment'
 
@@ -12,17 +13,17 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import Header from '@/components/utils/Header'
-import { IPermission, postUrl } from './types'
+import { commentsUrl } from './types'
 
-const Posts = () => {
-  const data = useGet<IPermission>({ url: postUrl })
+const Comments = () => {
+  const data = useGet<IComment>({ url: commentsUrl })
 
-  const borrar = useDeleteOne({ url: postUrl })
+  const borrar = useDeleteOne({ url: commentsUrl })
 
   return (
     <div>
       <>
-        <Header title='Posts' />
+        <Header title='Comentarios' />
         <Table
           data={data.data}
           loading={data.isFetching}
@@ -44,32 +45,21 @@ const Posts = () => {
                 ),
               },
               {
-                title: 'Titulo',
-                dataIndex: 'title',
-                key: 'title',
+                title: 'Post',
+                dataIndex: 'post',
+                key: 'post',
                 width: 100,
                 ellipsis: true,
                 align: 'left',
+                render: (_, r) => r.post?.title,
               },
               {
-                title: 'Tags',
-                dataIndex: 'tags',
-                key: 'tags',
-                width: 100,
+                title: 'Comentario',
+                dataIndex: 'description',
+                key: 'description',
+                width: 200,
                 ellipsis: true,
                 align: 'left',
-                render: (_, r) => (
-                  <div className='flex flex-wrap gap-2'>
-                    {r.tags.map((x) => (
-                      <div
-                        key={x.id}
-                        className={'rounded-md bg-slate-200 px-2 py-0.5'}
-                      >
-                        {x.name}
-                      </div>
-                    ))}
-                  </div>
-                ),
               },
               {
                 title: ' ',
@@ -108,4 +98,4 @@ const Posts = () => {
   )
 }
 
-export default Posts
+export default Comments

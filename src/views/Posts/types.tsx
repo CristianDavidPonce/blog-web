@@ -9,7 +9,7 @@ export interface IPost extends IRecord {
   title: string
   content: OutputData['blocks']
   tags: ITag[]
-  autor: IUser
+  author: IUser
 }
 
 export interface IOptions {
