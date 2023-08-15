@@ -17,8 +17,3 @@
 - Conditional classes with `clsx`
 - Variants with `class-variance-authority`
 - Automatic class sorting with `eslint-plugin-tailwindcss`
-
-## Import Sort
-
-The starter comes with `@ianvs/prettier-plugin-sort-imports` for automatically sort your imports.
-
