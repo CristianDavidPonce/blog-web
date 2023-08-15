@@ -22,6 +22,3 @@
 
 The starter comes with `@ianvs/prettier-plugin-sort-imports` for automatically sort your imports.
 
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
