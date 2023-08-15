@@ -11,6 +11,22 @@ const Home = () => {
   const data = useGet<IPost>({ url: postUrl })
   return (
     <div className='mx-auto max-w-[700px] px-4'>
+      {data.isLoading && (
+        <div className='r max-w-full animate-pulse space-y-4 divide-y divide-slate-200 dark:divide-slate-700 dark:border-slate-700'>
+          {Array.from({ length: 10 }).map((x, i) => (
+            <div className='flex flex-col pt-4' key={i}>
+              <div className='mb-2 flex items-center gap-2'>
+                <div className='h-10 w-10 rounded-full bg-slate-300 dark:bg-slate-600'></div>
+                <div className='h-5 w-28 rounded-md bg-slate-300 dark:bg-slate-600'></div>
+              </div>
+
+              <div className='h-28 w-full rounded-md bg-slate-200 dark:bg-slate-700'></div>
+            </div>
+          ))}
+
+          <span className='sr-only'>Loading...</span>
+        </div>
+      )}
       {data.data?.items.map((item) => (
         <Link
           key={item.id}
